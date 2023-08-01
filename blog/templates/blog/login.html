@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="">
+        <h3 class="text-white my-5">Login Page</h3>
+        <form action="" class="shadow-lg p-4" method="POST" novalidate>
+            {% csrf_token %}
+            {% for fm in form %}
+                <div class="form-group">
+                {{ fm.label_tag }} {{fm}} <small class="text-danger">
+                {{fm.errors|striptags}}</small>
+                </div>
+            {% endfor %}
+            <input type="submit" class="btn btn-outline-primary btn-block mt-3 font-weight-bold" value="Login">
+            {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p class="alert alert-danger my-3">{{error}}</p>
+                {% endfor %}
+            {% endif %}
+        </form>
+    </div>
+{% endblock content %}
